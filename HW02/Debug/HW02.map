@@ -1,0 +1,441 @@
+******************************************************************************
+                  TI ARM Linker PC v20.2.7                     
+******************************************************************************
+>> Linked Wed May  3 12:43:50 2023
+
+OUTPUT FILE NAME:   <HW02.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 000020f5
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  MAIN                  00000000   00040000  0000287e  0003d782  R  X
+  INFO                  00200000   00004000  00000000  00004000  R  X
+  SRAM_CODE             01000000   00010000  0000023b  0000fdc5  RW X
+  SRAM_DATA             20000000   00010000  0000023b  0000fdc5  RW  
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00002880   00002880    r-x
+  00000000    00000000    000000e4   000000e4    r-- .intvecs
+  000000e4    000000e4    0000209c   0000209c    r-x .text
+  00002180    00002180    000006c6   000006c6    r-- .const
+  00002848    00002848    00000038   00000038    r-- .cinit
+20000000    20000000    0000003b   00000000    rw-
+  20000000    20000000    00000032   00000000    rw- .data
+  20000032    20000032    00000009   00000000    rw- .bss
+2000fe00    2000fe00    00000200   00000000    rw-
+  2000fe00    2000fe00    00000200   00000000    rw- .stack
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    000000e4     
+                  00000000    000000e4     startup_msp432p401r_ccs.obj (.intvecs:retain)
+
+.text      0    000000e4    0000209c     
+                  000000e4    0000132c     tic_tac_toe.obj (.text)
+                  00001410    000005bc     hw-02-lcd.lib : lcd.obj (.text)
+                  000019cc    00000354     system_msp432p401r.obj (.text)
+                  00001d20    000001ac     timer32.obj (.text)
+                  00001ecc    000000e0     ps2.obj (.text)
+                  00001fac    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00002048    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  000020b0    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  000020f4    00000034                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00002128    0000001c                                   : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00002144    00000018     main.obj (.text)
+                  0000215c    0000000e     rtsv7M4_T_le_v4SPD16_eabi.lib : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  0000216a    0000000e     startup_msp432p401r_ccs.obj (.text)
+                  00002178    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  0000217c    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.const     0    00002180    000006c6     
+                  00002180    00000234     hw-02-lcd.lib : tic_tac_toe_images.obj (.const:.string:tieBitmaps)
+                  000023b4    00000228                   : tic_tac_toe_images.obj (.const:.string:x_WinsBitmaps)
+                  000025dc    000001ce                   : tic_tac_toe_images.obj (.const:.string:o_WinsBitmaps)
+                  000027aa    0000004b     tic_tac_toe_images.obj (.const:.string:Bitmaps_O)
+                  000027f5    0000004b     tic_tac_toe_images.obj (.const:.string:Bitmaps_X)
+                  00002840    00000006     hw-02-lcd.lib : tic_tac_toe_images.obj (.const)
+
+.cinit     0    00002848    00000038     
+                  00002848    00000013     (.cinit..data.load) [load image, compression = lzss]
+                  0000285b    00000001     --HOLE-- [fill = 0]
+                  0000285c    0000000c     (__TI_handler_table)
+                  00002868    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00002870    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.binit     0    00000000    00000000     
+
+.data      0    20000000    00000032     UNINITIALIZED
+                  20000000    00000024     tic_tac_toe.obj (.data:board)
+                  20000024    00000008     ps2.obj (.data)
+                  2000002c    00000004     system_msp432p401r.obj (.data)
+                  20000030    00000001     tic_tac_toe.obj (.data)
+                  20000031    00000001     timer32.obj (.data)
+
+.bss       0    20000032    00000009     UNINITIALIZED
+                  20000032    00000002     (.common:Lcd_ScreenHeigth)
+                  20000034    00000002     (.common:Lcd_ScreenWidth)
+                  20000036    00000001     (.common:BUTTON_PRESSED)
+                  20000037    00000001     (.common:SCREEN_READY)
+                  20000038    00000001     (.common:xPlaying)
+                  20000039    00000001     (.common:xPos)
+                  2000003a    00000001     (.common:yPos)
+
+.stack     0    2000fe00    00000200     UNINITIALIZED
+                  2000fe00    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  2000fe04    000001fc     --HOLE--
+
+__llvm_prf_cnts 
+*          0    20000000    00000000     UNINITIALIZED
+
+MODULE SUMMARY
+
+       Module                        code   ro data   rw data
+       ------                        ----   -------   -------
+    .\
+       tic_tac_toe.obj               4908   0         80     
+       system_msp432p401r.obj        852    0         8      
+       timer32.obj                   428    0         6      
+       startup_msp432p401r_ccs.obj   14     228       0      
+       ps2.obj                       224    0         16     
+       tic_tac_toe_images.obj        0      150       0      
+       main.obj                      24     0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        6450   378       110    
+                                                             
+    ../hw-02-lcd.lib
+       tic_tac_toe_images.obj        0      1584      0      
+       lcd.obj                       1468   0         8      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        1468   1584      8      
+                                                             
+    C:\ti\ccs\ccs\tools\compiler\ti-cgt-arm_20.2.7.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj             156    0         0      
+       copy_decompress_lzss.c.obj    104    0         0      
+       autoinit.c.obj                68     0         0      
+       boot_cortex_m.c.obj           52     0         0      
+       copy_zero_init.c.obj          28     0         0      
+       copy_decompress_none.c.obj    14     0         0      
+       exit.c.obj                    4      0         0      
+       pre_init.c.obj                4      0         0      
+    +--+-----------------------------+------+---------+---------+
+       Total:                        430    0         0      
+                                                             
+       Stack:                        0      0         1024   
+       Linker Generated:             0      55        0      
+    +--+-----------------------------+------+---------+---------+
+       Grand Total:                  8348   2017      1142   
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00002870 records: 2, size/record: 8, table size: 16
+	.data: load addr=00002848, load size=00000013 bytes, run addr=20000000, run size=00000032 bytes, compression=lzss
+	.bss: load addr=00002868, load size=00000008 bytes, run addr=20000032, run size=00000009 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 0000285c records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                            
+-------   ----                            
+00001f5d  ADC14_IRQHandler                
+00001f5d  ADC14_IRQHandler                
+00002177  AES256_IRQHandler               
+20000036  BUTTON_PRESSED                  
+000027aa  Bitmaps_O                       
+000027f5  Bitmaps_X                       
+00002177  BusFault_Handler                
+0000217d  C$$EXIT                         
+00002177  COMP_E0_IRQHandler              
+00002177  COMP_E1_IRQHandler              
+00002177  CS_IRQHandler                   
+000014e9  Crystalfontz128x128_SetDrawFrame
+00002177  DMA_ERR_IRQHandler              
+00002177  DMA_INT0_IRQHandler             
+00002177  DMA_INT1_IRQHandler             
+00002177  DMA_INT2_IRQHandler             
+00002177  DMA_INT3_IRQHandler             
+00002177  DebugMon_Handler                
+00002177  Default_Handler                 
+00002177  EUSCIA0_IRQHandler              
+00002177  EUSCIA1_IRQHandler              
+00002177  EUSCIA2_IRQHandler              
+00002177  EUSCIA3_IRQHandler              
+00002177  EUSCIB0_IRQHandler              
+00002177  EUSCIB1_IRQHandler              
+00002177  EUSCIB2_IRQHandler              
+00002177  EUSCIB3_IRQHandler              
+00002177  FLCTL_IRQHandler                
+00002177  FPU_IRQHandler                  
+00001411  HAL_LCD_PortInit                
+00001459  HAL_LCD_SpiInit                 
+0000148d  HAL_LCD_writeCommand            
+000014c5  HAL_LCD_writeData               
+00002177  HardFault_Handler               
+20000032  Lcd_ScreenHeigth                
+20000034  Lcd_ScreenWidth                 
+00002177  MemManage_Handler               
+00002177  NMI_Handler                     
+00002177  PCM_IRQHandler                  
+00002177  PORT1_IRQHandler                
+00002177  PORT2_IRQHandler                
+00002177  PORT3_IRQHandler                
+00002177  PORT4_IRQHandler                
+00002177  PORT5_IRQHandler                
+00002177  PORT6_IRQHandler                
+20000024  PS2_X_DIR                       
+20000028  PS2_Y_DIR                       
+00002177  PSS_IRQHandler                  
+00002177  PendSV_Handler                  
+00002177  RTC_C_IRQHandler                
+0000216b  Reset_Handler                   
+20000037  SCREEN_READY                    
+00002177  SVC_Handler                     
+00002177  SysTick_Handler                 
+2000002c  SystemCoreClock                 
+000019cd  SystemCoreClockUpdate           
+00001c45  SystemInit                      
+00001d8b  T32_1_init                      
+00001dcb  T32_2_init                      
+00001e39  T32_INT1_IRQHandler             
+00001e39  T32_INT1_IRQHandler             
+00001e75  T32_INT2_IRQHandler             
+00001e75  T32_INT2_IRQHandler             
+00002177  T32_INTC_IRQHandler             
+00002177  TA0_0_IRQHandler                
+00002177  TA0_N_IRQHandler                
+00002177  TA1_0_IRQHandler                
+00002177  TA1_N_IRQHandler                
+00002177  TA2_0_IRQHandler                
+00002177  TA2_N_IRQHandler                
+00002177  TA3_0_IRQHandler                
+00002177  TA3_N_IRQHandler                
+00002177  UsageFault_Handler              
+4000480c  WDTCTL_SYM                      
+00002177  WDT_A_IRQHandler                
+20010000  __STACK_END                     
+00000200  __STACK_SIZE                    
+00002870  __TI_CINIT_Base                 
+00002880  __TI_CINIT_Limit                
+0000285c  __TI_Handler_Table_Base         
+00002868  __TI_Handler_Table_Limit        
+000020b1  __TI_auto_init_nobinit_nopinit  
+00002049  __TI_decompress_lzss            
+0000215d  __TI_decompress_none            
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+00000000  __TI_static_base__              
+00002129  __TI_zero_init_nomemset         
+00001fad  __aeabi_memcpy                  
+00001fad  __aeabi_memcpy4                 
+00001fad  __aeabi_memcpy8                 
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+UNDEFED   __mpu_init                      
+2000fe00  __stack                         
+20000000  __start___llvm_prf_cnts         
+20000000  __stop___llvm_prf_cnts          
+000020f5  _c_int00_noargs                 
+UNDEFED   _system_post_cinit              
+00002179  _system_pre_init                
+0000217d  abort                           
+ffffffff  binit                           
+20000000  board                           
+00001361  board_full                      
+00001ef9  ece353_ADC14_PS2_XY             
+00001e29  ece353_MKII_S2                  
+00001e09  ece353_MKII_S2_Init             
+00000000  interruptVectors                
+00001947  lcd_O_wins                      
+00001925  lcd_X_wins                      
+00001993  lcd_clear_screen                
+000017a5  lcd_draw_image                  
+00001687  lcd_draw_rectangle              
+00001559  lcd_init                        
+00001971  lcd_tie                         
+00002145  main                            
+00001fad  memcpy                          
+000025dc  o_WinsBitmaps                   
+00002845  o_WinsHeightPixels              
+00002844  o_WinsWidthPixels               
+0000019d  tic_tac_toe_example_board       
+000000e5  tic_tac_toe_hw_init             
+000002ed  tic_tac_toe_play_game           
+00002180  tieBitmaps                      
+00002841  tieHeightPixels                 
+00002840  tieWidthPixels                  
+000004d1  update_screen                   
+000011d1  winDetection                    
+20000038  xPlaying                        
+20000039  xPos                            
+20000030  xStarted                        
+000023b4  x_WinsBitmaps                   
+00002843  x_WinsHeightPixels              
+00002842  x_WinsWidthPixels               
+2000003a  yPos                            
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                            
+-------   ----                            
+00000000  __TI_static_base__              
+00000000  interruptVectors                
+000000e5  tic_tac_toe_hw_init             
+0000019d  tic_tac_toe_example_board       
+00000200  __STACK_SIZE                    
+000002ed  tic_tac_toe_play_game           
+000004d1  update_screen                   
+000011d1  winDetection                    
+00001361  board_full                      
+00001411  HAL_LCD_PortInit                
+00001459  HAL_LCD_SpiInit                 
+0000148d  HAL_LCD_writeCommand            
+000014c5  HAL_LCD_writeData               
+000014e9  Crystalfontz128x128_SetDrawFrame
+00001559  lcd_init                        
+00001687  lcd_draw_rectangle              
+000017a5  lcd_draw_image                  
+00001925  lcd_X_wins                      
+00001947  lcd_O_wins                      
+00001971  lcd_tie                         
+00001993  lcd_clear_screen                
+000019cd  SystemCoreClockUpdate           
+00001c45  SystemInit                      
+00001d8b  T32_1_init                      
+00001dcb  T32_2_init                      
+00001e09  ece353_MKII_S2_Init             
+00001e29  ece353_MKII_S2                  
+00001e39  T32_INT1_IRQHandler             
+00001e39  T32_INT1_IRQHandler             
+00001e75  T32_INT2_IRQHandler             
+00001e75  T32_INT2_IRQHandler             
+00001ef9  ece353_ADC14_PS2_XY             
+00001f5d  ADC14_IRQHandler                
+00001f5d  ADC14_IRQHandler                
+00001fad  __aeabi_memcpy                  
+00001fad  __aeabi_memcpy4                 
+00001fad  __aeabi_memcpy8                 
+00001fad  memcpy                          
+00002049  __TI_decompress_lzss            
+000020b1  __TI_auto_init_nobinit_nopinit  
+000020f5  _c_int00_noargs                 
+00002129  __TI_zero_init_nomemset         
+00002145  main                            
+0000215d  __TI_decompress_none            
+0000216b  Reset_Handler                   
+00002177  AES256_IRQHandler               
+00002177  BusFault_Handler                
+00002177  COMP_E0_IRQHandler              
+00002177  COMP_E1_IRQHandler              
+00002177  CS_IRQHandler                   
+00002177  DMA_ERR_IRQHandler              
+00002177  DMA_INT0_IRQHandler             
+00002177  DMA_INT1_IRQHandler             
+00002177  DMA_INT2_IRQHandler             
+00002177  DMA_INT3_IRQHandler             
+00002177  DebugMon_Handler                
+00002177  Default_Handler                 
+00002177  EUSCIA0_IRQHandler              
+00002177  EUSCIA1_IRQHandler              
+00002177  EUSCIA2_IRQHandler              
+00002177  EUSCIA3_IRQHandler              
+00002177  EUSCIB0_IRQHandler              
+00002177  EUSCIB1_IRQHandler              
+00002177  EUSCIB2_IRQHandler              
+00002177  EUSCIB3_IRQHandler              
+00002177  FLCTL_IRQHandler                
+00002177  FPU_IRQHandler                  
+00002177  HardFault_Handler               
+00002177  MemManage_Handler               
+00002177  NMI_Handler                     
+00002177  PCM_IRQHandler                  
+00002177  PORT1_IRQHandler                
+00002177  PORT2_IRQHandler                
+00002177  PORT3_IRQHandler                
+00002177  PORT4_IRQHandler                
+00002177  PORT5_IRQHandler                
+00002177  PORT6_IRQHandler                
+00002177  PSS_IRQHandler                  
+00002177  PendSV_Handler                  
+00002177  RTC_C_IRQHandler                
+00002177  SVC_Handler                     
+00002177  SysTick_Handler                 
+00002177  T32_INTC_IRQHandler             
+00002177  TA0_0_IRQHandler                
+00002177  TA0_N_IRQHandler                
+00002177  TA1_0_IRQHandler                
+00002177  TA1_N_IRQHandler                
+00002177  TA2_0_IRQHandler                
+00002177  TA2_N_IRQHandler                
+00002177  TA3_0_IRQHandler                
+00002177  TA3_N_IRQHandler                
+00002177  UsageFault_Handler              
+00002177  WDT_A_IRQHandler                
+00002179  _system_pre_init                
+0000217d  C$$EXIT                         
+0000217d  abort                           
+00002180  tieBitmaps                      
+000023b4  x_WinsBitmaps                   
+000025dc  o_WinsBitmaps                   
+000027aa  Bitmaps_O                       
+000027f5  Bitmaps_X                       
+00002840  tieWidthPixels                  
+00002841  tieHeightPixels                 
+00002842  x_WinsWidthPixels               
+00002843  x_WinsHeightPixels              
+00002844  o_WinsWidthPixels               
+00002845  o_WinsHeightPixels              
+0000285c  __TI_Handler_Table_Base         
+00002868  __TI_Handler_Table_Limit        
+00002870  __TI_CINIT_Base                 
+00002880  __TI_CINIT_Limit                
+20000000  __start___llvm_prf_cnts         
+20000000  __stop___llvm_prf_cnts          
+20000000  board                           
+20000024  PS2_X_DIR                       
+20000028  PS2_Y_DIR                       
+2000002c  SystemCoreClock                 
+20000030  xStarted                        
+20000032  Lcd_ScreenHeigth                
+20000034  Lcd_ScreenWidth                 
+20000036  BUTTON_PRESSED                  
+20000037  SCREEN_READY                    
+20000038  xPlaying                        
+20000039  xPos                            
+2000003a  yPos                            
+2000fe00  __stack                         
+20010000  __STACK_END                     
+4000480c  WDTCTL_SYM                      
+ffffffff  __TI_pprof_out_hndl             
+ffffffff  __TI_prof_data_size             
+ffffffff  __TI_prof_data_start            
+ffffffff  __binit__                       
+ffffffff  __c_args__                      
+ffffffff  binit                           
+UNDEFED   __mpu_init                      
+UNDEFED   _system_post_cinit              
+
+[136 symbols]
